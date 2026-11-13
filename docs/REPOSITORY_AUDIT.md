@@ -45,6 +45,7 @@ All commands were run on 2026-11-13. "Exit" is the process exit code; `npm audit
 | 18 | `gh repo view RasimAghayev/react_beginner --json ...` | 0 | default `master`; no description; no license; wiki + discussions enabled; not archived/fork |
 | 19 | `gh pr list --state open` | 0 | 5 bot PRs (#47–#51) |
 | 20 | file probes (`Dockerfile`, `docker-compose.yml`, `.dockerignore`, `Makefile`, `.github`, `.env*`, `.nvmrc`, `tsconfig.json`) | 0 | all absent |
+| 21 | `git push` of the Phase 3 branch (remote scan) | 0 | GitHub reports 129 Dependabot alerts on `master` (4 critical / 66 high / 46 moderate / 13 low) |
 
 ## 3. Findings — P0 to P3
 
@@ -110,6 +111,7 @@ The only external requests are the Google Fonts CSS import and the `hits.sh` bad
 - `npm audit`: 4 critical / 35 high / 20 moderate / 21 low.
 - 58 advisories are fixable by regenerating the lockfile within existing semver ranges.
 - 22 require replacing `react-scripts`; all 4 criticals are in this group.
+- GitHub's own Dependabot count for the default branch is **129 alerts** (4 critical / 66 high / 46 moderate / 13 low), higher than the local `npm audit` result (80). The two use different advisory sources and scopes; both agree on 4 criticals. The audit uses the reproducible `npm audit` numbers and records the GitHub count as corroboration.
 - Because the production artifact is static, the shipped JS does not include `webpack-dev-server`; the practical risk is to the developer machine and CI build stage, not to end users. This should be re-measured after the Vite migration.
 
 ## 6. Legal / licensing
